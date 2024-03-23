@@ -1,5 +1,7 @@
 package com.sb.app.company.ms.service;
 
+import com.sb.app.company.ms.entity.Company;
+
 import java.util.List;
 
 public interface CompanyService {

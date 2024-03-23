@@ -1,7 +1,7 @@
-package com.sb.app.firstjobapp.company;
+package com.sb.app.company.ms.controller;
 
-import com.sb.app.firstjobapp.job.Job;
-import com.sb.app.firstjobapp.job.JobService;
+import com.sb.app.company.ms.entity.Company;
+import com.sb.app.company.ms.service.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +15,8 @@ public class CompanyController {
 
     private CompanyService companyService;
 
-    private JobService jobService;
-
-    public CompanyController(CompanyService companyService, JobService jobService) {
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
-        this.jobService = jobService;
     }
 
     @GetMapping
@@ -55,14 +52,8 @@ public class CompanyController {
 
         Company company = companyService.getCompanyById(id);
         if (Objects.nonNull(company)) {
-            Long count = jobService.findJobCountBy(company.getId());
-            if (count == 0) {
-                companyService.deleteCompanyById(id);
-                return ResponseEntity.noContent().build();
-            } else {
-                return ResponseEntity.ok("Can not be delete this Company as Jobs are present against this company");
-
-            }
+            companyService.deleteCompanyById(id);
+            return ResponseEntity.noContent().build();
 
         } else {
             return ResponseEntity.notFound().build();

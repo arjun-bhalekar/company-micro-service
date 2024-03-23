@@ -1,8 +1,8 @@
 package com.sb.app.company.ms.service.impl;
 
-import com.sb.app.firstjobapp.company.Company;
-import com.sb.app.firstjobapp.company.CompanyRepository;
-import com.sb.app.firstjobapp.company.CompanyService;
+import com.sb.app.company.ms.entity.Company;
+import com.sb.app.company.ms.repository.CompanyRepository;
+import com.sb.app.company.ms.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
