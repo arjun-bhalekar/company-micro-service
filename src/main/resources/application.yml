@@ -5,15 +5,19 @@ server:
 spring:
   application:
     name: company-micro-service
+#  datasource:
+#    url: jdbc:h2:mem:test
+#  h2:
+#    console:
+#      enabled: true
   datasource:
-    url: jdbc:h2:mem:test
-  h2:
-    console:
-      enabled: true
+    url: jdbc:postgresql://localhost:5432/company
+    username: parjunb
+    password: parjunb
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+    database: POSTGRESQL
 
 
