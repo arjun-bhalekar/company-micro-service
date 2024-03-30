@@ -1,5 +1,6 @@
 package com.sb.app.company.ms.service;
 
+import com.sb.app.company.ms.dto.ReviewMessage;
 import com.sb.app.company.ms.entity.Company;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface CompanyService {
     Company getCompanyById(Long id);
 
     boolean deleteCompanyById(Long id);
+
+    void updateCompanyRating(ReviewMessage reviewMessage);
 }

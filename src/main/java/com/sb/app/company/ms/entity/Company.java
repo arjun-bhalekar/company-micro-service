@@ -13,6 +13,7 @@ public class Company {
     private Long id;
     private String name;
     private String description;
+    private Double rating;
 
     // Single Company can have multiple Job's
 //    @JsonIgnore
@@ -49,4 +50,11 @@ public class Company {
         this.description = description;
     }
 
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
 }

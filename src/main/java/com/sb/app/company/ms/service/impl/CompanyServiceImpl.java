@@ -1,12 +1,15 @@
 package com.sb.app.company.ms.service.impl;
 
+import com.sb.app.company.ms.dto.ReviewMessage;
 import com.sb.app.company.ms.entity.Company;
+import com.sb.app.company.ms.feignclients.ReviewClient;
 import com.sb.app.company.ms.repository.CompanyRepository;
 import com.sb.app.company.ms.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -14,6 +17,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private ReviewClient reviewClient;
 
     @Override
     public List<Company> getAllCompanies() {
@@ -50,6 +56,16 @@ public class CompanyServiceImpl implements CompanyService {
             return true;
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public void updateCompanyRating(ReviewMessage reviewMessage) {
+        Company company = getCompanyById(reviewMessage.getCompanyId());
+        if(Objects.nonNull(company)) {
+            Double averageRating = reviewClient.getAverageRating(reviewMessage.getCompanyId());
+            company.setRating(averageRating);
+            companyRepository.save(company);
         }
     }
 }
